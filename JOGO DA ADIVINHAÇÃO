@@ -1,0 +1,17 @@
+import os
+os.system("cls")
+print("JOGO DE ADIVINHAÇÃO DE 1 À 10. ")
+i = 1
+jog1 = int (input("Jogador 1 digite um número: "))
+while jog1 <1 or jog1 >10:
+    jog1 = int (input("Número fora do intervalo! Digite novamente: "))
+os.system("cls")
+jog2 = int (input("Jogador 2 digite o numero: "))
+while jog2 <1 or jog2 >10:
+    print("Número fora do intervalo! Digite novamente")
+    jog2 = int (input("Jogador 2 digite o numero: "))
+while jog1 != jog2:
+    print("Você errou, tente novamente!")
+    jog2 = int (input("Jogador 2 digite o numero: "))
+    i += 1
+print(f"Você acertou com {i} tentativas!")
