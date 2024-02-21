@@ -1,0 +1,57 @@
+print("""
+***********************************************
+            Sistema de Fábrica 
+***********************************************     
+Classe 1 - Até 30 peças / Mês
+Classe 2 - 31 a 35 peças / Mês
+Classe 3 - Mais de 35 peças / Mês
+***********************************************
+Classe 1 - Salário Mínimo R$ 724,00
+Classe 2 - Salário Mínimo + 3% por peça (Acima das 30 peças iniciais)
+Classe 3 - Salário Mínimo + 5% por peça (Acima das 30 peças iniciais)
+***********************************************
+""")
+
+
+tot_folha = 0
+tot_pecas = 0
+media_m = 0
+media_f = 0
+cont_m = 0
+cont_f = 0
+SM = 724.00
+salario_maior = 0
+num_maior = 0
+
+for num_op in range(1, 16):
+    pecas_op = int(input(f"Digite a quantidade de peças fabricadas pelo operador {num_op}: "))
+    sex_op = input(f"Digite o sexo do operador {num_op} (com as letras M - Masculino ou F - Feminino): ").upper()
+    while sex_op != 'M' and sex_op != 'F':
+        sex_op = input("Opção inválida! Digite com M ou F: ").upper()
+    if pecas_op <= 30:
+        salario_op = SM
+        print("Registrado com sucesso! Classe 1")
+    elif 31 <= pecas_op <= 35:
+        salario_op = SM + 0.03 * SM * (pecas_op - 30)
+        print("Registrado com sucesso! Classe 2")
+    else:
+        salario_op = SM + 0.05 * SM * (pecas_op - 30)
+        print("Registrado com sucesso! Classe 3")
+    tot_folha += salario_op
+    tot_pecas += pecas_op
+    if sex_op == 'M':
+        cont_m += 1
+        media_m += pecas_op
+    elif sex_op == 'F':
+        cont_f += 1
+        media_f += pecas_op
+    if salario_op > salario_maior:
+        salario_maior = salario_op
+        num_maior = num_op
+media_m = media_m / cont_m if cont_m > 0 else 0
+media_f = media_f / cont_f if cont_f > 0 else 0
+print(f"O total de Folha de Pagamento foi de: R$ {tot_folha:.2f}")
+print(f"O número total de peças fabricadas foi de: {tot_pecas}")
+print(f"A média de peças fabricadas pelos homens foi: {media_m:.2f}")
+print(f"A média de peças fabricadas pelas mulheres foi: {media_f:.2f}")
+print(f"O número do operador com o maior salário foi: {num_maior} com salário R$ {salario_maior:.2f}")
